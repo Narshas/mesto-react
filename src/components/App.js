@@ -1,6 +1,6 @@
 import React from "react";
 
-import PopupWithImage from "./PopupWithImage";
+import ImagePopup from "./ImagePopup";
 import PopupWithForm from "./PopupWithForm";
 import Header from "./Header";
 import Main from "./Main";
@@ -14,7 +14,7 @@ function App() {
       <Header />
       <Main />
       <Footer />
-      <PopupWithImage></>
+      <ImagePopup></>
 
       {/* Редактирование профиля */}
       <PopupWithForm></>
