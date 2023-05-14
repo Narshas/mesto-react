@@ -34,3 +34,11 @@ export const ValidationOptions = {
     inputErrorSelector: '.popup__input-error',
     inputErrorClass: 'popup__input-error_active',
 };
+
+export const buttonProfile = document.querySelector('.profile__edit-button');
+export const popupProfile = document.querySelector('.popup_profile');
+export const nameInput = popupProfile.querySelector('#username-input');
+export const jobInput = popupProfile.querySelector('#about-input');
+export const buttonAddCard = document.querySelector('.profile__add-button');
+export const cardTemplate = document.querySelector('#user-card');
+export const buttonAvatar = document.querySelector('.profile__avatar');

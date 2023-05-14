@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "./Card"
-import { Api } from "../utils/Api";
+import { api } from "../utils/Api";
 import { avatarButton } from '../images/Vector.svg'
 
 
@@ -13,18 +13,37 @@ export function Main({ onEditProfile, onAddPlace, onEditAvatar, onZoomClick }) {
 
     React.useEffect(() => {
 
-        //api здесь
+        api.getUserInfo()
+            .then(({ name, about, avatar }) => {
+                setUserName(name);
+                setUserAbout(about);
+                setUserDescription(about);
+                setUserAvatar(avatar);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
 
-        const elementsList = elements.map((element) => {
-            return (
-                (<Card
-                    key={element._id}
-                    onZoomClick={onZoomClick}
-                    element={element}
-                />)
-            )
-        });
-    })
+    React.useEffect(() => {
+
+        api.InitialCards()
+            .then((res) => {
+                setElements(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+    }, []);
+
+
+
+    const elementsList = elements.map((element) => {
+        return (
+            (<Card key={element._id} onZoomClick={onZoomClick} element={element} />)
+        )
+    });
 
     return (
         <main className="content">

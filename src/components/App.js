@@ -14,13 +14,13 @@ function App() {
       <Header />
       <Main />
       <Footer />
-      <ImagePopup></>
+      <ImagePopup />
 
       {/* Редактирование профиля */}
-      <PopupWithForm></>
+      <PopupWithForm />
 
       {/* Редактировать аватар */}
-      <PopupWithForm></>
+      <PopupWithForm />
 
       {/* Удалить карточку */}
 
