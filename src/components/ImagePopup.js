@@ -6,7 +6,7 @@ export function ImagePopup({ cardData, onClose, isOpen }) {
             <div className="popup__zoom-container">
                 <button className="popup__close popup__close_zoom" onClick={onClose}></button>
                 <img src={cardData.link} alt={cardData.name} className="popup__image" />
-                <p className="popup__caption"></p>
+                <p className="popup__caption">{cardData.name}</p>
             </div>
         </div>
     )

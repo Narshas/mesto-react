@@ -1,11 +1,11 @@
 import React from "react";
-import Card from "./Card"
+import { Card } from "./Card"
 import { api } from "../utils/Api";
-import { avatarButton } from '../images/Vector.svg'
+import avatarButton from "../images/Vector.svg";
 
 
 
-export function Main({ onEditProfile, onAddPlace, onEditAvatar, onZoomClick }) {
+export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
     const [userName, setUserName] = React.useState('');
     const [userAbout, setUserAbout] = React.useState('');
     const [userAvatar, setUserAvatar] = React.useState('');
@@ -17,7 +17,6 @@ export function Main({ onEditProfile, onAddPlace, onEditAvatar, onZoomClick }) {
             .then(({ name, about, avatar }) => {
                 setUserName(name);
                 setUserAbout(about);
-                setUserDescription(about);
                 setUserAvatar(avatar);
             })
             .catch((err) => {
@@ -27,7 +26,7 @@ export function Main({ onEditProfile, onAddPlace, onEditAvatar, onZoomClick }) {
 
     React.useEffect(() => {
 
-        api.InitialCards()
+        api.getDefoltElements()
             .then((res) => {
                 setElements(res);
             })
@@ -41,7 +40,7 @@ export function Main({ onEditProfile, onAddPlace, onEditAvatar, onZoomClick }) {
 
     const elementsList = elements.map((element) => {
         return (
-            (<Card key={element._id} onZoomClick={onZoomClick} element={element} />)
+            (<Card key={element._id} onCardClick={onCardClick} cardData={element} />)
         )
     });
 
