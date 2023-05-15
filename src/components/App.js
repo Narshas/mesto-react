@@ -48,7 +48,7 @@ export function App() {
       {/* Редактирование аватар */}
 
       <PopupWithForm name="avatar" title="Обновить аватар" isOpen={isEditAvatarPopupOpen} submitText="Сохранить" onClose={closeAllPopups}>
-        <label for="avatar-input" className="popup__label"></label>
+        <label className="popup__label"></label>
         <input name="avatarurl" required id="avatar-input" type="url" className="popup__input popup__input_avatar"
           placeholder="Ссылка на новый аватар" />
         <span className="popup__input-error popup__input-error_avatar-input" id="avatar-input-error">В этом
@@ -58,14 +58,14 @@ export function App() {
       {/* Редактировать профиль */}
 
       <PopupWithForm name="profile" title="Редактировать профиль" isOpen={isEditProfilePopupOpen} submitText="Сохранить" onClose={closeAllPopups}>
-        <label for="username-input" className="popup__label"></label>
-        <input name="profilename" id="username-input" type="text" minlength="2" maxlength="40"
+        <label className="popup__label"></label>
+        <input name="profilename" id="username-input" type="text" minLength="2" maxLength="40"
           className="popup__input popup__input_profilename" required />
         <span className="popup__input-error popup__input-error_username-input" id="username-input-error">В этом поле
           ошибка</span>
 
-        <label for="about-input" className="popup__label"></label>
-        <input name="profileabout" id="about-input" type="text" minlength="2" maxlength="200"
+        <label className="popup__label"></label>
+        <input name="profileabout" id="about-input" type="text" minLength="2" maxLength="200"
           className="popup__input popup__input_profileabout" required />
         <span className="popup__input-error popup__input-error_about-input" id="about-input-error">В этом поле
           ошибка</span>
@@ -74,13 +74,13 @@ export function App() {
       {/* Добавить место */}
 
       <PopupWithForm name="place" title="Новое место" isOpen={isAddPlacePopupOpen} submitText="Создать" onClose={closeAllPopups} >
-        <label for="place-name-input" className="popup__label"></label>
-        <input name="placetext" required id="place-name-input" type="text" minlength="2" maxlength="30"
+        <label className="popup__label"></label>
+        <input name="placetext" required id="place-name-input" type="text" minLength="2" maxLength="30"
           className="popup__input popup__input_place" placeholder="Какое место хотите добавить?" />
         <span className="popup__input-error popup__input-error_place-name-input" id="place-name-input-error">В этом
           поле ошибка</span>
 
-        <label for="place-image-input" className="popup__label"></label>
+        <label className="popup__label"></label>
         <input name="placeurl" required id="place-image-input" type="url"
           className="popup__input popup__input_place" placeholder="Есть ссылка на фото оттуда?" />
         <span className="popup__input-error popup__input-error_place-image-input" id="place-image-input-error">В

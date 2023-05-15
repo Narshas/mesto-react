@@ -3,8 +3,6 @@ import { Card } from "./Card"
 import { api } from "../utils/Api";
 import avatarButton from "../images/Vector.svg";
 
-
-
 export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
     const [userName, setUserName] = React.useState('');
     const [userAbout, setUserAbout] = React.useState('');
