@@ -1,18 +1,38 @@
 import React from 'react';
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export function Card({ cardData, onCardClick }) {
+
+export function Card({ card, onCardClick, onCardLike }) {
     const handleZoomClick = () => {
-        onCardClick(cardData);
+        onCardClick(card);
     }
+
+    const handleCardLike = () => {
+        onCardLike(card);
+    }
+
+    const handleDeleteClick = () => {
+        deleteCardPopup.open(cardElement, card);
+        //а импорт попапа сюда?
+    }
+
+    const currentUser = React.useContext(CurrentUserContext);
+    const isOwn = card.owner._id === currentUser._id;
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const cardLikeButtonClassName = ( 
+        `elements__like-button ${isLiked && 'elements__like-button_active'}` 
+      );
+      //положить переменную в поле класса кнопки лайка 
 
     return (
         <li className="elements__item">
-            <button type="button" className="elements__trash-button" aria-label="удалить карточку места"></button>
+            {isOwn && <button type="button" className='elements__trash-button' 
+            onClick={handleDeleteClick} aria-label="удалить карточку места" />}
             <img src={cardData.link} alt={cardData.name} className="elements__image" onClick={handleZoomClick} />
             <div className="elements__block">
                 <h2 className="elements__title">{cardData.name}</h2>
                 <div className="elements__like-container">
-                    <button type="button" className="elements__like-button" aria-label="поставить лайк месту"></button>
+                    <button type="button" className="elements__like-button" aria-label="поставить лайк месту" onClick={handleCardLike}></button>
                     <p className="elements__like-counter">{cardData.likes.length}</p>
                 </div>
             </div>
