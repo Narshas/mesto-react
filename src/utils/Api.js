@@ -55,21 +55,21 @@ class Api {
             .then(res => this._testRes(res))
     }
 
-    addlike(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-            method: 'PUT',
-            headers: this._headers
-        })
-            .then(res => this._testRes(res))
-    }
+    // addlike(cardId) {
+    //     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    //         method: 'PUT',
+    //         headers: this._headers
+    //     })
+    //         .then(res => this._testRes(res))
+    // }
 
-    removeLike(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-            method: 'DELETE',
-            headers: this._headers
-        })
-            .then(res => this._testRes(res))
-    }
+    // removeLike(cardId) {
+    //     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    //         method: 'DELETE',
+    //         headers: this._headers
+    //     })
+    //         .then(res => this._testRes(res))
+    // }
 
     patchAvatar(avatarData) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {

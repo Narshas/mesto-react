@@ -27,12 +27,12 @@ export function Card({ card, onCardClick, onCardLike, onCardDelete }) {
         <li className="elements__item">
             {isOwn && <button type="button" className='elements__trash-button' 
             onClick={handleDeleteClick} aria-label="удалить карточку места" />}
-            <img src={cardData.link} alt={cardData.name} className="elements__image" onClick={handleZoomClick} />
+            <img src={card.link} alt={card.name} className="elements__image" onClick={handleZoomClick} />
             <div className="elements__block">
-                <h2 className="elements__title">{cardData.name}</h2>
+                <h2 className="elements__title">{card.name}</h2>
                 <div className="elements__like-container">
                     <button type="button" className="elements__like-button" aria-label="поставить лайк месту" onClick={handleCardLike}></button>
-                    <p className="elements__like-counter">{cardData.likes.length}</p>
+                    <p className="elements__like-counter">{card.likes.length}</p>
                 </div>
             </div>
         </li>

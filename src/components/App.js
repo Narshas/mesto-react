@@ -19,7 +19,7 @@ export function App() {
   const [isZoomPopupOpen, setIsZoomPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
   const [cards, setCards] = React.useState([]);
-  const [currentUser, setCurrentUser] = React.useEffect({})
+  const [currentUser, setCurrentUser] = React.useState({});
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
@@ -59,9 +59,10 @@ export function App() {
         console.log(err);
       });
   }
+  
 
   function handleUpdateUser() {
-    api.patchUserInfo()
+    api.getUserInfo()
       .then(res => {
         setCurrentUser(res);
         closeAllPopups();
@@ -103,10 +104,8 @@ export function App() {
   React.useEffect(() => {
 
     api.getUserInfo()
-        .then(({ name, about, avatar }) => {
-            setUserName(name);
-            setUserAbout(about);
-            setUserAvatar(avatar);
+        .then((res) => {
+          setCurrentUser(res);
         })
         .catch((err) => {
             console.log(err);
