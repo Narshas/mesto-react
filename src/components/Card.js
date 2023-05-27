@@ -2,7 +2,7 @@ import React from 'react';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 
-export function Card({ card, onCardClick, onCardLike }) {
+export function Card({ card, onCardClick, onCardLike, onCardDelete }) {
     const handleZoomClick = () => {
         onCardClick(card);
     }
@@ -12,8 +12,7 @@ export function Card({ card, onCardClick, onCardLike }) {
     }
 
     const handleDeleteClick = () => {
-        deleteCardPopup.open(cardElement, card);
-        //а импорт попапа сюда?
+        onCardDelete(card);
     }
 
     const currentUser = React.useContext(CurrentUserContext);

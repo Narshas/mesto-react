@@ -2,31 +2,34 @@ import React from "react";
 import { Card } from "./Card"
 import { api } from "../utils/Api";
 import avatarButton from "../images/Vector.svg";
+import { CurrentUserContext } from "../contexts/CurrentUserContext"
 
-export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
-    const [userName, setUserName] = React.useState('');
-    const [userAbout, setUserAbout] = React.useState('');
-    const [userAvatar, setUserAvatar] = React.useState('');
-    const [elements, setElements] = React.useState([]);
+export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete }) {
+    //const [userName, setUserName] = React.useState('');
+    //const [userAbout, setUserAbout] = React.useState('');
+    //const [userAvatar, setUserAvatar] = React.useState('');
+    const [cards, setCards] = React.useState([]);
 
-    React.useEffect(() => {
+    const currentUser = React.useContext(CurrentUserContext);
 
-        api.getUserInfo()
-            .then(({ name, about, avatar }) => {
-                setUserName(name);
-                setUserAbout(about);
-                setUserAvatar(avatar);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+    // React.useEffect(() => {
+
+    //     api.getUserInfo()
+    //         .then(({ name, about, avatar }) => {
+    //             setUserName(name);
+    //             setUserAbout(about);
+    //             setUserAvatar(avatar);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, []);
 
     React.useEffect(() => {
 
         api.getDefoltElements()
             .then((res) => {
-                setElements(res);
+                setCards(res);
             })
             .catch((err) => {
                 console.log(err);
@@ -36,9 +39,9 @@ export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
 
 
 
-    const elementsList = elements.map((element) => {
+    const cardsList = cards.map((card) => {
         return (
-            (<Card key={element._id} onCardClick={onCardClick} cardData={element} />)
+            (<Card key={card._id} onCardClick={onCardClick} card={card} onCardLike={onCardLike} onCardDelete={onCardDelete}/>)
         )
     });
 
@@ -47,17 +50,17 @@ export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
 
             <section className='profile'>
                 <div className='profile__avatar-container'>
-                    <img src={userAvatar} alt="фото пользователя"
+                    <img src={currentUser.avatar} alt="фото пользователя"
                         className='profile__avatar' />
                     <img src={avatarButton} alt='Кнопка редактирования аватара'
                         className='profile__avatar-edit' onClick={onEditAvatar} />
                 </div>
                 <div className="profile__info">
                     <div className="profile__wraper">
-                        <h1 className="profile__name">{userName}</h1>
+                        <h1 className="profile__name">{currentUser.name}</h1>
                         <button type="button" className="profile__edit-button" aria-label="исправить профиль" onClick={onEditProfile}></button>
                     </div>
-                    <p className="profile__about">{userAbout}</p>
+                    <p className="profile__about">{currentUser.about}</p>
                 </div>
 
                 <button type="button" className="profile__add-button" aria-label="добавить новое место" onClick={onAddPlace}></button>
@@ -65,7 +68,7 @@ export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
 
             <section className="elements">
                 <ul className="elements__list">
-                    {elementsList}
+                    {cardsList}
                 </ul>
             </section>
         </main>
