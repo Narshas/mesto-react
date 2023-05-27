@@ -5,8 +5,12 @@ import { PopupWithForm } from "./PopupWithForm";
 import { Header } from "./Header";
 import { Main } from "./Main";
 import { Footer } from "./Footer";
-import { CurrentUserContext } from "../contexts/CurrentUserContext"
 import { api } from "../utils/Api";
+
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { EditProfilePopup } from "./EditProfilePopup";
+import { EditAvatarPopup } from "./EditAvatarPopup";
+import { AddPlacePopup } from "./AddPlacePopup";
 
 export function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -36,7 +40,9 @@ export function App() {
       .then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
       })
-      .catch((error) => console.log(`ошибка: ${error}`))
+      .catch((err) => {
+        console.log(err);
+      });
   } 
 
   const handleCardClick = (element) => {
@@ -49,7 +55,9 @@ export function App() {
       .then(() => {
         setCards((cards) => cards.filter((c) => c._id !== card.id))
       })
-      .catch((error) => console.log(`ошибка: ${error}`))
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleUpdateUser() {
@@ -58,7 +66,9 @@ export function App() {
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch((error) => console.log(`ошибка: ${error}`));
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleUpdateAvatar(avatarData) {
@@ -67,8 +77,20 @@ export function App() {
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch((error) => console.log(`ошибка: ${error}`));
+      .catch((err) => {
+        console.log(err);
+      });
       
+  }
+
+  function handleAddPlaceSubmit() {
+    api.postNewCard()
+      .then(newCard => {
+        setCards([newCard, ...cards]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   const closeAllPopups = () => {
@@ -89,7 +111,19 @@ export function App() {
         .catch((err) => {
             console.log(err);
         });
-}, []);
+    }, []);
+
+  React.useEffect(() => {
+
+    api.getDefoltElements()
+        .then((res) => {
+            setCards(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -97,7 +131,7 @@ export function App() {
 
       <div className="root">
         <Header />
-        <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} onCardLike={handleCardLike} onCardDelete={handleDeleteClick}/>
+        <Main cards={cards} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} onCardLike={handleCardLike} onCardDelete={handleDeleteClick}/>
         <Footer />
         <ImagePopup cardData={selectedCard} onClose={closeAllPopups} isOpen={isZoomPopupOpen} />
 
@@ -108,20 +142,8 @@ export function App() {
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
 
         {/* Добавить место */}
-
-        <PopupWithForm name="place" title="Новое место" isOpen={isAddPlacePopupOpen} submitText="Создать" onClose={closeAllPopups} >
-          <label className="popup__label"></label>
-          <input name="placetext" required id="place-name-input" type="text" minLength="2" maxLength="30"
-            className="popup__input popup__input_place" placeholder="Какое место хотите добавить?" />
-          <span className="popup__input-error popup__input-error_place-name-input" id="place-name-input-error">В этом
-            поле ошибка</span>
-
-          <label className="popup__label"></label>
-          <input name="placeurl" required id="place-image-input" type="url"
-            className="popup__input popup__input_place" placeholder="Есть ссылка на фото оттуда?" />
-          <span className="popup__input-error popup__input-error_place-image-input" id="place-image-input-error">В
-            этом поле ошибка</span>
-        </PopupWithForm>
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit}/>
+        
 
       </div>
     </CurrentUserContext.Provider>  

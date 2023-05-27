@@ -4,11 +4,11 @@ import { api } from "../utils/Api";
 import avatarButton from "../images/Vector.svg";
 import { CurrentUserContext } from "../contexts/CurrentUserContext"
 
-export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete }) {
+export function Main({ cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete }) {
     //const [userName, setUserName] = React.useState('');
     //const [userAbout, setUserAbout] = React.useState('');
     //const [userAvatar, setUserAvatar] = React.useState('');
-    const [cards, setCards] = React.useState([]);
+    //const [cards, setCards] = React.useState([]);
 
     const currentUser = React.useContext(CurrentUserContext);
 
@@ -25,17 +25,17 @@ export function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onC
     //         });
     // }, []);
 
-    React.useEffect(() => {
+    // React.useEffect(() => {
 
-        api.getDefoltElements()
-            .then((res) => {
-                setCards(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+    //     api.getDefoltElements()
+    //         .then((res) => {
+    //             setCards(res);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
 
-    }, []);
+    // }, []);
 
 
 
