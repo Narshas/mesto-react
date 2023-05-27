@@ -3,7 +3,7 @@ import PopupWithForm from "./PopupWithForm";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 
-function EditProfilePopup({isOpen, onClose}) {
+export function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
     const [userName, setUserName] = React.useState('');
     const [userAbout, setUserAbout] = React.useState('');
     const currentUser = React.useContext(CurrentUserContext);
@@ -21,12 +21,11 @@ function EditProfilePopup({isOpen, onClose}) {
         setUserAbout(e.target.value);
     }
 
-    function handleSubmit() {
-        // тут надо проверить наоменования полей
+    function handleSubmit(e) {
         e.preventDefault();
-        props.onUpdateUser({
-            name,
-            about: description,
+        onUpdateUser({
+            name: userName,
+            about: userAbout
         });
     }
 

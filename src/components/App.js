@@ -53,12 +53,22 @@ export function App() {
   }
 
   function handleUpdateUser() {
-    api.getUserInfo()
+    api.patchUserInfo()
       .then(res => {
         setCurrentUser(res);
         closeAllPopups();
       })
       .catch((error) => console.log(`ошибка: ${error}`));
+  }
+
+  function handleUpdateAvatar(avatarData) {
+    api.patchAvatar(avatarData)
+      .then(res => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((error) => console.log(`ошибка: ${error}`));
+      
   }
 
   const closeAllPopups = () => {
@@ -92,14 +102,7 @@ export function App() {
         <ImagePopup cardData={selectedCard} onClose={closeAllPopups} isOpen={isZoomPopupOpen} />
 
         {/* Редактирование аватар */}
-
-        <PopupWithForm name="avatar" title="Обновить аватар" isOpen={isEditAvatarPopupOpen} submitText="Сохранить" onClose={closeAllPopups}>
-          <label className="popup__label"></label>
-          <input name="avatarurl" required id="avatar-input" type="url" className="popup__input popup__input_avatar"
-            placeholder="Ссылка на новый аватар" />
-          <span className="popup__input-error popup__input-error_avatar-input" id="avatar-input-error">В этом
-            поле ошибка</span>
-        </PopupWithForm>
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar}/>
 
         {/* Редактировать профиль */}
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
