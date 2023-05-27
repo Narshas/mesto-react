@@ -10,11 +10,6 @@ export function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
         avatarRef.current.value = '';
       }, [currentUser]); 
 
-    // function handleAvatarChange(e) {
-    //     avatarRef.current.value = e.target.value;
-    //     //setUserName(e.target.value);
-    // }
-
     function handleSubmit(e) {
         e.preventDefault();
       
