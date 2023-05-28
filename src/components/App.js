@@ -87,6 +87,7 @@ export function App() {
     api.postNewCard(cardInfo)
       .then(newCard => {
         setCards([newCard, ...cards]);
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
