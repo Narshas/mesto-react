@@ -1,43 +1,11 @@
 import React from "react";
 import { Card } from "./Card"
-import { api } from "../utils/Api";
 import avatarButton from "../images/Vector.svg";
 import { CurrentUserContext } from "../contexts/CurrentUserContext"
 
 export function Main({ cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete }) {
-    //const [userName, setUserName] = React.useState('');
-    //const [userAbout, setUserAbout] = React.useState('');
-    //const [userAvatar, setUserAvatar] = React.useState('');
-    //const [cards, setCards] = React.useState([]);
-
+    
     const currentUser = React.useContext(CurrentUserContext);
-
-    // React.useEffect(() => {
-
-    //     api.getUserInfo()
-    //         .then(({ name, about, avatar }) => {
-    //             setUserName(name);
-    //             setUserAbout(about);
-    //             setUserAvatar(avatar);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // }, []);
-
-    // React.useEffect(() => {
-
-    //     api.getDefoltElements()
-    //         .then((res) => {
-    //             setCards(res);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-
-    // }, []);
-
-
 
     const cardsList = cards.map((card) => {
         return (

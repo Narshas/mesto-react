@@ -1,7 +1,6 @@
 import React from "react";
 
 import { ImagePopup } from "./ImagePopup";
-import { PopupWithForm } from "./PopupWithForm";
 import { Header } from "./Header";
 import { Main } from "./Main";
 import { Footer } from "./Footer";
