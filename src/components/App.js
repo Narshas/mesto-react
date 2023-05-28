@@ -83,8 +83,8 @@ export function App() {
       
   }
 
-  function handleAddPlaceSubmit() {
-    api.postNewCard()
+  function handleAddPlaceSubmit(cardInfo) {
+    api.postNewCard(cardInfo)
       .then(newCard => {
         setCards([newCard, ...cards]);
       })
@@ -133,13 +133,10 @@ export function App() {
         <Footer />
         <ImagePopup cardData={selectedCard} onClose={closeAllPopups} isOpen={isZoomPopupOpen} />
 
-        {/* Редактирование аватар */}
         <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar}/>
 
-        {/* Редактировать профиль */}
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
 
-        {/* Добавить место */}
         <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit}/>
         
 

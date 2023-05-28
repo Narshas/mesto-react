@@ -7,7 +7,7 @@ export function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
     const currentUser = React.useContext(CurrentUserContext);
 
     React.useEffect(() => {
-        avatarRef.current.value = '';
+        avatarRef.current.value = ''
       }, [currentUser]); 
 
     function handleSubmit(e) {
