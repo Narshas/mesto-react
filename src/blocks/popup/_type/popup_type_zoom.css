@@ -1,5 +1,7 @@
-.popup__image {
+.popup_type_zoom {
     max-width: 75vw;
     max-height: 75vh;
-    object-fit: contain;
+    /* object-fit: contain; */
+    /* background: rgba(0, 0, 0, 0.5); */
+    background: rgba(0, 0, 0, 0.9);
 }

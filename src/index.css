@@ -31,6 +31,7 @@
 @import url(./blocks/elements/__trash-button/elements__trash-button.css);
 
 @import url(./blocks/popup/popup.css);
+@import url(./blocks/popup/__image/popup__image.css);
 @import url(./blocks/popup/__caption/popup__caption.css);
 @import url(./blocks/popup/__close/popup__close.css);
 @import url(./blocks/popup/__close/_place/popup__close_place.css);

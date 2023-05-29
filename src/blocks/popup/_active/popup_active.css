@@ -2,3 +2,7 @@
     opacity: 1;
     visibility: visible;
 }
+
+/* .popup_active:has(.popup__image) {
+    opacity: 1;
+} */
