@@ -60,8 +60,8 @@ export function App() {
   }
   
 
-  function handleUpdateUser() {
-    api.getUserInfo()
+  function handleUpdateUser(userData) {
+    api.patchUserInfo(userData)
       .then(res => {
         setCurrentUser(res);
         closeAllPopups();
