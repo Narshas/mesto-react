@@ -32,7 +32,7 @@ export function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
     return (
         <PopupWithForm name="profile" title="Редактировать профиль" isOpen={isOpen} submitText="Сохранить" onClose={onClose} onSubmit={handleSubmit}>
                 <label className="popup__label"></label>
-                <input defaultValue=" " value={userName || ""} onChange={handleNameChange} name="profilename" id="username-input" type="text" minLength="2" maxLength="40"
+                <input value={userName || ""} onChange={handleNameChange} name="profilename" id="username-input" type="text" minLength="2" maxLength="40"
                     className="popup__input popup__input_profilename" required />
                 <span className="popup__input-error popup__input-error_username-input" id="username-input-error">В этом поле
                     ошибка</span>
